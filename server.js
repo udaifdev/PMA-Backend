@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import userRoutes from './routes/authRoutes.js'
 import productRoutes from './routes/productManageRoutes.js'
 import wishlistRoutes from './routes/wishlistRoutes.js'
-import connectDB from './config/db.js';
+import connectDB from './config/db.js';  
 
 
 
@@ -20,7 +20,7 @@ const port = process.env.PORT || 9999;
 const app = express();
 
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: 'https://pma-frontend-mu.vercel.app/',
     credentials: true,
 }));
 
@@ -33,22 +33,22 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
 
 // Routes
-app.use('/api/users', userRoutes);
-app.use('/api/product', productRoutes);
-app.use('/api/wishlist', wishlistRoutes);
+app.use('/api/users',  userRoutes);
+app.use('/api/product',  productRoutes);
+app.use('/api/wishlist',  wishlistRoutes);
 
 
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error('Error:', err.stack);
-
+    
     res.status(err.status || 500).json({
         success: false,
         message: err.message || 'Internal Server Error',
         ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
     });
 });
-
+ 
 
 // Handle 404 routes
 // app.use('*', (req, res) => {
