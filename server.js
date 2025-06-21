@@ -19,8 +19,6 @@ connectDB();
 const port = process.env.PORT || 9999;
 const app = express();
 
-
-
 app.use(cors(
     {
         origin: "https://pma-frontend-mu.vercel.app",

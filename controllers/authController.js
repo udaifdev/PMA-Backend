@@ -51,8 +51,8 @@ export const registerUser = async (req, res) => {
       // Set HTTP-only cookie
       res.cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        secure: true,
+        sameSite: "None",
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
       })
 
@@ -119,8 +119,8 @@ export const loginUser = async (req, res) => {
     // Set HTTP-only cookie
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,
+      sameSite: "None",
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
     })
 
@@ -150,8 +150,8 @@ export const logoutUser = (req, res) => {
   res.cookie("token", "", {
     httpOnly: true,
     expires: new Date(0),
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    secure: true,
+    sameSite: "None",
   })
   res.status(200).json({
     success: true,
